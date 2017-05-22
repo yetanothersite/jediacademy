@@ -1,0 +1,18 @@
+{% extends 'base/base.html' %}
+
+{% load i18n %}
+
+{% block content %}
+    <div class="container">
+        <h2>Applicant</h2>
+        <hr>
+        <div class="person-detail">
+            <div><span>{% trans 'lastname:' %}</span>{{ object.lastname }}</div>
+            <div><span>{% trans 'firstname:' %}</span>{{ object.firstname }}</div>
+            <div><span>{% trans 'email:' %}</span>{{ object.email }}</div>
+            <div><span>{% trans 'planet:' %}</span>{{ object.planet }}</div>
+        </div>
+        <hr>
+        <p><a class="btn btn-primary btn-lg" role="button" href="{% url 'exam-create'  object.id %}">{% trans 'Take the Exam' %}</a></p>
+    </div>
+{% endblock content %}

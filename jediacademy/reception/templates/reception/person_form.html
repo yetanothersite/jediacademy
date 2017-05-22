@@ -1,0 +1,73 @@
+{% extends 'base/base.html' %}
+
+{% load i18n %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-4">
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <h1>{% trans 'Applicant Registration' %}</h1>
+                <hr>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ form.non_field_errors }}
+                    </div>
+                    <div class="form-group">
+                        {% if form.email.errors %}
+                            <ol>
+                            {% for error in form.email.errors %}
+                                <li><strong>{{ error|escape }}</strong></li>
+                            {% endfor %}
+                            </ol>
+                        {% endif %}
+                        <label for="id_email">{% trans 'Email address:' %}</label>
+                        <input type="email" class="form-control" name="email" id="id_email" type="email" maxlength="254" required="" >
+                    </div>
+                    <div class="form-group">
+                        {% if form.lastname.errors %}
+                            <ol>
+                            {% for error in form.lastname.errors %}
+                                <li><strong>{{ error|escape }}</strong></li>
+                            {% endfor %}
+                            </ol>
+                        {% endif %}
+                        <label for="id_lastname">{% trans 'Lastname:' %}</label>
+                        <input class="form-control" name="lastname" id="id_lastname" type="text" maxlength="50" required="">
+                    </div>
+                    <div class="form-group">
+                        {% if form.firstname.errors %}
+                            <ol>
+                            {% for error in form.firstname.errors %}
+                                <li><strong>{{ error|escape }}</strong></li>
+                            {% endfor %}
+                            </ol>
+                        {% endif %}
+                        <label for="id_firstname">{% trans 'Firstname:' %}</label>
+                        <input class="form-control" name="firstname" id="id_firstname" type="text" maxlength="50" required="">
+                    </div>
+                    <div class="form-group">
+                        {% if form.planet.errors %}
+                            <ol>
+                            {% for error in form.planet.errors %}
+                                <li><strong>{{ error|escape }}</strong></li>
+                            {% endfor %}
+                            </ol>
+                        {% endif %}
+                        <label for="id_planet">{% trans 'Planet:' %}</label>
+                        <select class="form-control" name="planet" id="id_planet" required="">
+                            {% for x,y in form.fields.planet.choices %}
+                                <option value="{{ x }}"{% if form.fields.planet.value == x %} selected{% endif %}>{{ y }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            <div class="col-xs-12 col-md-4">
+            </div>
+        </div>
+    </div>
+{% endblock content %}

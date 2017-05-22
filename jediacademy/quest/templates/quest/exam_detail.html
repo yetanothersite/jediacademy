@@ -1,0 +1,28 @@
+{% extends 'base/base.html' %}
+
+{% load i18n %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>{% trans 'Your Exam' %}</h2>
+                <hr>
+                <p>
+                    <span>{% trans 'Person:' %}</span>
+                    {{ object.person.lastname }} {{ object.person.firstname }} {% trans 'from' %} {{ object.person.planet }}
+                </p>
+                <p>
+                    <span>{% trans 'Quest description:' %}</span>
+                    {{ object.quest.descr }}
+                </p>
+                <p>
+                    <span>{% trans 'Quest Level:' %}</span>
+                    {{ object.quest.rank }}
+                </p>
+                <hr>
+                <p><a class="btn btn-primary btn-lg" href="{% url 'answers-create' object.id %}" role="button">{% trans 'Open tasks' %}</a></p>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

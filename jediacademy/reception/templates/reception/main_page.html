@@ -1,0 +1,18 @@
+{% extends "base/base.html" %}
+
+{% load i18n %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="jumbotron">
+                    <h1>{% trans 'Welcome to JA!' %}</h1>
+                    <p>{% lorem 1 %}</p>
+                    <p><a class="btn btn-primary btn-lg" href="{% url 'person-create' %}" role="button">{% trans 'I\'m Youngling' %}</a></p>
+                    <p><a class="btn btn-primary btn-lg" href="{% url 'person-create' %}" role="button">{% trans 'For Mentors Only ...' %}</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

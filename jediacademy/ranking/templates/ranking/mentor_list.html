@@ -1,0 +1,11 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+ <ol>
+    {% for object in object_list %}
+        <li>{{ object }} <span style="padding-left: 1em;">count: {{ object.juniors_count }}</span></li>
+    {% endfor %}
+</ol>
+{% endblock content %}
+
+

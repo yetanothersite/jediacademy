@@ -1,0 +1,41 @@
+{% extends 'base/base.html' %}
+
+{% load i18n %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-4">
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <h1>{% trans 'Choose the Quest' %}</h1>
+                <hr>
+                <form action="{{ action }}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ form.non_field_errors }}
+                    </div>
+                    <input hidden="true" name="person" id="id_person" type="text" value="{{ view.kwargs.applicant_id }}">
+                    <div class="form-group">
+                        {% if form.quest.errors %}
+                            <ol>
+                            {% for error in form.quest.errors %}
+                                <li><strong>{{ error|escape }}</strong></li>
+                            {% endfor %}
+                            </ol>
+                        {% endif %}
+                        <label for="id_quest">{% trans 'Quest:' %}</label>
+                        <select class="form-control" name="quest" id="id_quest" required="">
+                            {% for x,y in form.fields.quest.choices %}
+                                <option value="{{ x }}"{% if form.fields.quest.value == x %} selected{% endif %}>{{ y }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            <div class="col-xs-12 col-md-4">
+            </div>
+        </div>
+    </div>
+{% endblock content %}
